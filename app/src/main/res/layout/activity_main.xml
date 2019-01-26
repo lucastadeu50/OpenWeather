@@ -29,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textAlignment="center"
-                android:text="20 graus em São Paulo com tempo parcialmentte nublado."
                 android:textSize="16sp"
                 />
         </LinearLayout>
