@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lucas.openweather.R;
-import com.example.lucas.openweather.model.Feed;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +39,9 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         textView = findViewById(R.id.textView);
 
 
-        solicitarPermissao();
+        requestPermision();
 
+        getWeather();
 
 
         client = LocationServices.getFusedLocationProviderClient(this);
@@ -57,10 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
                 if(location != null){
                     String latitude = String.valueOf(location.getLatitude());
                     String longitude = String.valueOf(location.getLongitude());
-
-                   setupMVP(latitude, longitude);
-                   getWeather();
-
+                    setupMVP(latitude, longitude);
 
                 }
             }
@@ -79,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     }
 
 
-    private void solicitarPermissao(){
+    private void requestPermision(){
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, 1);
     }
 
@@ -93,11 +89,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
     @Override
     public void displayWeather(String texto) {
-
-
-
         textView.setText(texto);
-
 
     }
 }
