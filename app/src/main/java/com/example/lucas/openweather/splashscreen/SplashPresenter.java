@@ -3,7 +3,6 @@ package com.example.lucas.openweather.splashscreen;
 import com.example.lucas.openweather.model.Feed;
 import com.example.lucas.openweather.network.NetworkClient;
 import com.example.lucas.openweather.network.NetworkInterface;
-import com.example.lucas.openweather.ui.MainViewInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,13 +12,13 @@ public class SplashPresenter implements SplashPresenterInterface{
     private static String appid = "7052879bbb729b5e5e15752641ae6b79";
     private static String lang = "pt";
     private static String units = "metric";
-    SplashScreenViewInterface mvi;
+    SplashScreenViewInterface splashScreenViewInterface;
     String latitude;
     String longitude;
 
 
     public SplashPresenter(SplashScreenViewInterface mvi, String latitude, String longitude) {
-        this.mvi = mvi;
+        this.splashScreenViewInterface = mvi;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -40,11 +39,12 @@ public class SplashPresenter implements SplashPresenterInterface{
 
                 if (response.isSuccessful()) {
                     Feed feed = response.body();
+                    splashScreenViewInterface.startMainActivity(feed);
                 }
             }
             @Override
             public void onFailure(Call<Feed> call, Throwable t) {
-                mvi.displayError(t.getMessage());
+                splashScreenViewInterface.displayError(t.getMessage());
 
             }
 

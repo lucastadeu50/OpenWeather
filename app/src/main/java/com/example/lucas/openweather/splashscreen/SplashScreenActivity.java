@@ -13,7 +13,8 @@ import android.widget.Toast;
 
 import com.example.lucas.openweather.R;
 
-import com.example.lucas.openweather.ui.MainActivity;
+import com.example.lucas.openweather.model.Feed;
+import com.example.lucas.openweather.mainactivity.MainActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,8 +37,6 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
         requestPermision();
 
-        getWeather();
-
 
         client = LocationServices.getFusedLocationProviderClient(this);
 
@@ -52,9 +51,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
                     String latitude = String.valueOf(location.getLatitude());
                     String longitude = String.valueOf(location.getLongitude());
                     setupMVP(latitude, longitude);
-                    Intent intent  = new Intent(mContext, MainActivity.class);
-                    mContext.startActivity(intent);
-                    ((Activity) mContext).finish();
+                    getWeather();
 
                 }
             }
@@ -82,6 +79,14 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
     public void displayError(String s) {
         Toast.makeText(SplashScreenActivity.this, s, Toast.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    public void startMainActivity(Feed feed) {
+        Intent intent  = new Intent(mContext, MainActivity.class);
+        intent.putExtra("feed", feed);
+        mContext.startActivity(intent);
+        ((Activity) mContext).finish();
     }
 
 }
