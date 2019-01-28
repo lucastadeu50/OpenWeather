@@ -2,10 +2,12 @@ package com.example.lucas.openweather.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Context;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
 import com.example.lucas.openweather.R;
 import com.example.lucas.openweather.model.Feed;
 
@@ -52,4 +54,5 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         textView.setText(texto);
 
     }
+
 }
