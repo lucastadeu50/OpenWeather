@@ -173,6 +173,6 @@ public class MainPresenter implements MainPresenterInterface {
 
 ## Autor
 
-* **Lucas Tadeu** - *Initial work* - [PurpleBooth](https://github.com/lucastadeu50)
+* **Lucas Tadeu** - [PurpleBooth](https://github.com/lucastadeu50)
 
 
