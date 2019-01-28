@@ -17,8 +17,8 @@ public class SplashPresenter implements SplashPresenterInterface{
     String longitude;
 
 
-    public SplashPresenter(SplashScreenViewInterface mvi, String latitude, String longitude) {
-        this.splashScreenViewInterface = mvi;
+    public SplashPresenter(SplashScreenViewInterface splashScreenViewInterface, String latitude, String longitude) {
+        this.splashScreenViewInterface = splashScreenViewInterface;
         this.latitude = latitude;
         this.longitude = longitude;
     }
