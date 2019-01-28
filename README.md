@@ -168,7 +168,136 @@ public class MainPresenter implements MainPresenterInterface {
 
 }
 
+
 ```
+
+O package model foi todo feito com a ajuda do plugin RoboPOJOGenerator que gerou todas classes de modelo automaticamente
+
+````
+
+public class Feed implements Serializable {
+	private int dt;
+	private List<WeatherItem> weather;
+	private String name;
+	private int cod;
+	private Main main;
+	private int id;
+	private String base;
+
+	public int getDt() {
+		return dt;
+	}
+
+	public void setDt(int dt) {
+		this.dt = dt;
+	}
+
+	public List<WeatherItem> getWeather() {
+		return weather;
+	}
+
+	public void setWeather(List<WeatherItem> weather) {
+		this.weather = weather;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCod() {
+		return cod;
+	}
+
+	public void setCod(int cod) {
+		this.cod = cod;
+	}
+
+	public Main getMain() {
+		return main;
+	}
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getBase() {
+		return base;
+	}
+
+	public void setBase(String base) {
+		this.base = base;
+	}
+
+	@Override
+	public String toString() {
+		return "Feed{" +
+				"dt=" + dt +
+				", weather=" + weather +
+				", name='" + name + '\'' +
+				", cod=" + cod +
+				", main=" + main +
+				", id=" + id +
+				", base='" + base + '\'' +
+				'}';
+	}
+}
+
+````
+
+### NetworkClient e NetworkInterface
+
+Para fazer a chamada na api é necessario uma Interface e um Client.
+
+
+```
+public class NetworkClient {
+
+    private static String BASE_URL = "http://api.openweathermap.org/";
+
+    public static Retrofit retrofit;
+
+    public void NetworkClient(){
+
+    }
+
+    public static Retrofit getRetrofit(){
+
+        if(retrofit==null){
+             retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
+        return retrofit;
+    }
+
+
+}
+
+````
+```
+public interface NetworkInterface {
+
+        @Headers("Content-Type: application/json")
+        @GET("/data/2.5/weather")
+        Call<Feed> getData(@Query("lat") String latitude, @Query("lon") String longitude, @Query("appid") String appid, @Query("lang") String lang, @Query("units") String units);
+}
+
+````
+
 
 
 
